@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  auth:
+    build:
+      context: .
+    environment:
+      - SECRET_KEY=samplesecret123
+      - ALLOWED_HOSTS=*
+
+  proxy:
+    build:
+      context: ./proxy
+    ports:
+      - "80:8000"
+    depends_on:
+      - auth
